@@ -10,8 +10,8 @@ export default {
                     
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <form class="form-inline mt-2 mt-lg-0">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" v-model="search">
+                            <button class="btn btn-outline-light my-2 my-sm-0" type="submit" @click.prevent="searchGo()">Search</button>
                         </form>
                         <ul class="navbar-nav ml-auto navbar-right">
                             <li class="nav-item" v-if="!isLoggedIn">
@@ -24,7 +24,7 @@ export default {
                                 <router-link :to="{ name: 'profile' }" class="nav-link">Profile</router-link>
                             </li>
                             <li class="nax-item" v-if="isLoggedIn">
-                                <a @click="logout" class="nav-link">Logout</a>
+                                <a href="#" @click.prevent="logout" class="nav-link">Logout</a>
                             </li>
                         </ul>
                     </div>
@@ -46,6 +46,7 @@ export default {
     `,
     data() {
         return {
+            search: '',
             nowYear: (new Date()).getFullYear()
         }
     },
@@ -55,6 +56,9 @@ export default {
         }
     },
     methods: {
+        searchGo() {
+            this.$root.$emit('search', this.search);
+        },
         logout() {
             this.$store.dispatch('logout').then(() => {
                 this.$router.push({ name: 'index' });
