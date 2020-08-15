@@ -1,0 +1,35 @@
+a:hover {
+    cursor: pointer;
+}
+
+.auth {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+    margin: auto;
+}
+
+.loading {
+    opacity: .5;
+    position: relative;
+}
+
+    .loading::after {
+        content: " ";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 99999999;
+        cursor: wait;
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+main > .container {
+    padding: 60px 15px 0;
+}
+
+.footer {
+    background-color: #f5f5f5;
+}
