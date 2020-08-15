@@ -4,8 +4,10 @@ export default {
         <div class="container" :class="{ 'loading': loading }">
             <div v-for="post in posts" :key="post.id">
                 <h2><a :href="'/post/' + post.slug">{{ post.title }}</a></h2>
-                {{ post.createdAt }}
-                {{ post.user.username }}
+                <div class="mb-2">
+                    <time :datetime="post.createdAt">{{ post.createdAt | formatDate }}</time>
+                    by <b>{{ post.user.username }}</b>
+                </div>
                 <p class="text-justify">{{ post.text }}</p>
             </div>
             
@@ -59,6 +61,11 @@ export default {
         prevPage() {
             this.page--;
             this.getPosts();
+        }
+    },
+    filters: {
+        formatDate: d => {
+            return moment(String(d)).fromNow();
         }
     }
 }
