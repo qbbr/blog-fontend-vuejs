@@ -1,7 +1,7 @@
-import Index from './components/Index.js'
-import Login from './components/Login.js'
-import Profile from './components/Profile.js'
-import Register from './components/Register.js'
+import Index from './components/Index.js';
+import Login from './components/Login.js';
+import Profile from './components/Profile.js';
+import Register from './components/Register.js';
 
 export const router = new VueRouter({
     mode: 'history',

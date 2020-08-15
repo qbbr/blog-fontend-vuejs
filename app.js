@@ -11,7 +11,7 @@ Vue.http.interceptors.push((request, next) => {
             router.push({ name: 'login' });
             store.dispatch('logout');
         }
-        return response
+        return response;
     })
 });
 

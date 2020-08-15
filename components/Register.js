@@ -1,4 +1,5 @@
 export default {
+    name: 'Register',
     template: `
         <div class="auth">
             <h4 class="mb-4">Register</h4>
@@ -22,7 +23,6 @@ export default {
             </form>
         </div>
     `,
-    name: 'Register',
     data() {
         return {
             loading: false,

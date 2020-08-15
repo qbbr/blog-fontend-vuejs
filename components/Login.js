@@ -1,4 +1,5 @@
 export default {
+    name: 'Login',
     template: `
         <div class="auth">
             <h4 class="mb-4">Login</h4>
@@ -17,12 +18,11 @@ export default {
             </form>
         </div>
     `,
-    name: 'Login',
     data() {
         return {
             loading: false,
-            username: 'user1',
-            password: 'password'
+            username: '',
+            password: ''
         }
     },
     methods: {
@@ -34,7 +34,6 @@ export default {
                 this.$router.push({ name: 'index' });
                 this.loading = false;
             }).catch(err => {
-                console.log(err);
                 this.loading = false;
             })
         }

@@ -1,4 +1,5 @@
 export default {
+    name: 'Index',
     template: `
         <div class="container" :class="{ 'loading': loading }">
             <div v-for="post in posts" :key="post.id">
@@ -23,7 +24,6 @@ export default {
             </nav>
         </div>
     `,
-    name: 'Home',
     data() {
         return {
             loading: true,

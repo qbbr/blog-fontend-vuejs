@@ -1,4 +1,5 @@
 export default {
+    name: 'Profile',
     template: `
         <div class="auth">
             <h4 class="mb-4">Profile</h4>
@@ -27,7 +28,6 @@ export default {
             </form>
         </div>
     `,
-    name: 'Profile',
     data() {
         return {
             loading: true,
@@ -53,7 +53,7 @@ export default {
         update() {
             let about = this.about;
             this.loading = true;
-            Vue.http.put('private/user/', { about }).then(reponse => {
+            Vue.http.put('private/user/', { about }).then(() => {
                 this.loading = false;
             });
         }
