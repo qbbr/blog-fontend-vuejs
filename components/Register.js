@@ -6,17 +6,27 @@ export default {
             <form @submit.prevent="register" :class="{ 'loading': loading }">
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input type="text" id="username" class="form-control" v-model="username" required>
+                    <input type="text" id="username" class="form-control" :class="{ 'is-invalid': errors.username }" v-model="username" required>
+                    <div v-if="errors.username" class="invalid-feedback">
+                        <ul class="text-left pl-3">
+                            <li v-for="error in errors.username">{{ error }}</li>
+                        </ul>
+                    </div>
                 </div>
                 
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" class="form-control" v-model="password" required>
+                    <input type="password" id="password" class="form-control" :class="{ 'is-invalid': errors.password }" v-model="password" required>
+                    <div v-if="errors.password" class="invalid-feedback">
+                        <ul class="text-left pl-3">
+                            <li v-for="error in errors.password">{{ error }}</li>
+                        </ul>
+                    </div>
                 </div>
                 
                 <div class="form-group">
-                    <label for="password-confirmation">Configrm password</label>
-                    <input type="password" id="password-confirmation" class="form-control" v-model="passwordConfirmation" required>
+                    <label for="password-confirmation">Confirm password</label>
+                    <input type="password" id="password-confirmation" class="form-control" v-model="passwordConfirmation" ref="passwordConfirmationElm" required>
                 </div>
                 
                 <button type="submit" class="btn btn-primary">Register</button>
@@ -28,20 +38,36 @@ export default {
             loading: false,
             username: '',
             password: '',
-            passwordConfirmation: ''
+            passwordConfirmation: '',
+            errors: {}
         }
     },
+    watch: {
+        passwordConfirmation: 'checkPasswordsEqual',
+        password: 'checkPasswordsEqual',
+    },
     methods: {
+        checkPasswordsEqual() {
+            const { password, passwordConfirmation } = this;
+            const { passwordConfirmationElm } = this.$refs;
+
+            if (passwordConfirmation !== password) {
+                passwordConfirmationElm.setCustomValidity('Password not confirmed.');
+            } else {
+                passwordConfirmationElm.setCustomValidity('');
+            }
+        },
         register() {
+            const { username, password } = this;
             this.loading = true;
-            let username = this.username;
-            let password = this.password;
             this.$store.dispatch('register', { username, password }).then(() => {
                 this.$router.push({ name: 'index' });
                 this.loading = false;
-            }).catch(err => {
+            }).catch(response => {
+                if (422 === response.status) { // validation error
+                    this.errors = response.data.errors;
+                }
                 this.loading = false;
-                console.log(err);
             });
         }
     }
