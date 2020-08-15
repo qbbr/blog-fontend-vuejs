@@ -7,7 +7,7 @@ Vue.http.options.root = 'http://127.0.0.1:8001/';
 
 Vue.http.interceptors.push((request, next) => {
     next((response) => {
-        if (response.status === 401) {
+        if (response.status === 401 && router.currentRoute.name !== 'login') {
             router.push({ name: 'login' });
             store.dispatch('logout');
         }

@@ -4,6 +4,10 @@ export default {
         <div class="auth">
             <h4 class="mb-4">Login</h4>
             <form @submit.prevent="login" :class="{ 'loading': loading }">
+                <div v-if="error" class="alert alert-danger">
+                    {{ error }}
+                </div>
+                
                 <div class="form-group">
                     <label for="username" class="sr-only">Username</label>
                     <input type="text" id="username" class="form-control" v-model="username" placeholder="username" required>
@@ -22,20 +26,22 @@ export default {
         return {
             loading: false,
             username: '',
-            password: ''
+            password: '',
+            error: ''
         }
+
     },
     methods: {
         login() {
+            const { username, password } = this;
             this.loading = true;
-            let username = this.username;
-            let password = this.password;
             this.$store.dispatch('login', { username, password }).then(() => {
                 this.$router.push({ name: 'index' });
                 this.loading = false;
-            }).catch(err => {
+            }).catch(response => {
+                this.error = response.data.message;
                 this.loading = false;
-            })
+            });
         }
     }
 };
