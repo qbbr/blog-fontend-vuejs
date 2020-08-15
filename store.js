@@ -10,8 +10,6 @@ if (user) {
 export default new Vuex.Store({
     state: state,
     mutations: {
-        auth_request(state) {
-        },
         auth_success(state, user) {
             state.isAuth = true;
             state.user = user;
@@ -22,6 +20,7 @@ export default new Vuex.Store({
             state.isAuth = false;
             state.user = null;
             localStorage.removeItem('user');
+            delete Vue.http.headers.common['Authorization'];
         },
         auth_logout(state) {
             state.isAuth = false;
@@ -33,8 +32,6 @@ export default new Vuex.Store({
     actions: {
         register({ commit }, user) {
             return new Promise((resolve, reject) => {
-                commit('auth_request');
-
                 Vue.http.post('register/', user).then(response => {
                     user.token = response.data.token;
                     commit('auth_success', user);
@@ -47,8 +44,6 @@ export default new Vuex.Store({
         },
         login({ commit }, user) {
             return new Promise((resolve, reject) => {
-                commit('auth_request');
-
                 Vue.http.post('login/', user).then(response => {
                     user.token = response.data.token;
                     commit('auth_success', user)
