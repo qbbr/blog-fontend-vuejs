@@ -2,7 +2,7 @@ export default {
     name: 'Index',
     template: `
         <div class="container" :class="{ 'loading': loading }">
-            <div v-if="posts.length === 0" style="height: 400px;"></div>
+            <div v-if="posts.length === 0" style="height: 400px;" class="no-content">no posts...</div>
             <div v-for="post in posts" :key="post.id">
                 <h2><a :href="'/post/' + post.slug">{{ post.title }}</a></h2>
                 <div class="mb-2">

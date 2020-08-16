@@ -57,6 +57,11 @@ export default {
             return this.$store.state.isAuth;
         }
     },
+    mounted() {
+        if (this.$route.query.query) {
+            this.query = this.$route.query.query;
+        }
+    },
     methods: {
         search() {
             const params = {};
