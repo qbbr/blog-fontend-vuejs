@@ -4,7 +4,7 @@ export default {
         <div class="card bg-light mx-auto" style="max-width: 30rem;" :class="{ 'loading': loading }">
             <div class="card-header">Profile</div>
             <div class="card-body">
-                <form @submit.prevent="update" :class="{ 'loading': loading }">
+                <form @submit.prevent="update">
                     <div class="form-group">
                         <label for="username" class="sr-only">Username</label>
                         <input type="text" id="username" class="form-control" v-model="username" readonly>
