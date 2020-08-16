@@ -3,6 +3,7 @@ import Tag from './components/Tag.js';
 import Login from './components/Login.js';
 import Profile from './components/Profile.js';
 import Register from './components/Register.js';
+import NewPost from './components/NewPost.js';
 
 export const router = new VueRouter({
     mode: 'history',
@@ -31,6 +32,11 @@ export const router = new VueRouter({
             name: 'profile',
             path: '/profile',
             component: Profile
+        },
+        {
+            name: 'new_post',
+            path: '/new_post',
+            component: NewPost
         }
     ]
 });

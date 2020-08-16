@@ -18,7 +18,7 @@ export default {
                                 <input class="form-control" type="search" placeholder="Search" aria-label="Search" v-model="query">
                                 <span class="input-group-append">
                                     <button class="btn btn-outline-secondary border-left-0 border" type="button" v-if="query.length" @click.prevent="clearQuery">&times;</button>
-                                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+                                    <button class="btn btn-outline-light" type="submit">Search</button>
                                 </span>
                             </div>
                         </form>
@@ -28,6 +28,9 @@ export default {
                             </li>
                             <li class="nav-item" v-if="!isLoggedIn">
                                 <router-link :to="{ name: 'register' }" class="nav-link">Register</router-link>
+                            </li>
+                            <li class="nax-item mr-3" v-if="isLoggedIn">
+                                <router-link :to="{ name: 'new_post' }" class="btn btn-outline-success mt-2 mt-lg-0">&plus; new post</router-link>
                             </li>
                             <li class="nax-item" v-if="isLoggedIn">
                                 <router-link :to="{ name: 'profile' }" class="nav-link">Profile</router-link>
