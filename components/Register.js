@@ -1,36 +1,38 @@
 export default {
     name: 'Register',
     template: `
-        <div class="auth">
-            <h4 class="mb-4">Register</h4>
-            <form @submit.prevent="register" :class="{ 'loading': loading }">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" class="form-control" :class="{ 'is-invalid': errors.username }" v-model="username" required>
-                    <div v-if="errors.username" class="invalid-feedback">
-                        <ul class="text-left pl-3">
-                            <li v-for="error in errors.username">{{ error }}</li>
-                        </ul>
+        <div class="card bg-light mx-auto" style="max-width: 20rem;" :class="{ 'loading': loading }">
+            <div class="card-header">Register</div>
+            <div class="card-body">
+                <form @submit.prevent="register">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" class="form-control" :class="{ 'is-invalid': errors.username }" v-model="username" required>
+                        <div v-if="errors.username" class="invalid-feedback">
+                            <ul class="pl-3">
+                                <li v-for="error in errors.username">{{ error }}</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" class="form-control" :class="{ 'is-invalid': errors.password }" v-model="password" required>
-                    <div v-if="errors.password" class="invalid-feedback">
-                        <ul class="text-left pl-3">
-                            <li v-for="error in errors.password">{{ error }}</li>
-                        </ul>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" class="form-control" :class="{ 'is-invalid': errors.password }" v-model="password" required>
+                        <div v-if="errors.password" class="invalid-feedback">
+                            <ul class="pl-3">
+                                <li v-for="error in errors.password">{{ error }}</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="password-confirmation">Confirm password</label>
-                    <input type="password" id="password-confirmation" class="form-control" v-model="passwordConfirmation" ref="passwordConfirmationElm" required>
-                </div>
-                
-                <button type="submit" class="btn btn-primary">Register</button>
-            </form>
+                    
+                    <div class="form-group">
+                        <label for="password-confirmation">Confirm password</label>
+                        <input type="password" id="password-confirmation" class="form-control" v-model="passwordConfirmation" ref="passwordConfirmationElm" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </form>
+            </div>
         </div>
     `,
     data() {
@@ -50,7 +52,6 @@ export default {
         checkPasswordsEqual() {
             const { password, passwordConfirmation } = this;
             const { passwordConfirmationElm } = this.$refs;
-
             if (passwordConfirmation !== password) {
                 passwordConfirmationElm.setCustomValidity('Password not confirmed.');
             } else {
