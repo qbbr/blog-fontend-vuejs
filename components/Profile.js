@@ -49,7 +49,7 @@ export default {
             });
         },
         update() {
-            let about = this.about;
+            const { about } = this;
             this.loading = true;
             Vue.http.put('private/user/', { about }).then(() => {
                 this.loading = false;
