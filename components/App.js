@@ -7,11 +7,16 @@ export default {
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
+                    <ul class="navbar-nav">
+                        <li class="nav-item mr-3">
+                            <router-link :to="{ name: 'tag' }" class="nav-link">Tags</router-link>
+                        </li>
+                    </ul>
                     
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <form class="form-inline mt-2 mt-lg-0">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" v-model="search">
-                            <button class="btn btn-outline-light my-2 my-sm-0" type="submit" @click.prevent="searchGo()">Search</button>
+                        <form class="form-inline mt-2 mt-lg-0" @submit.prevent="search">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" v-model="query">
+                            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
                         </form>
                         <ul class="navbar-nav ml-auto navbar-right">
                             <li class="nav-item" v-if="!isLoggedIn">
@@ -46,7 +51,7 @@ export default {
     `,
     data() {
         return {
-            search: '',
+            query: '',
             nowYear: (new Date()).getFullYear()
         }
     },
@@ -56,8 +61,12 @@ export default {
         }
     },
     methods: {
-        searchGo() {
-            this.$root.$emit('search', this.search);
+        search() {
+            const params = {};
+            if (this.query.length) {
+                params.query = this.query;
+            }
+            this.$router.push({ name: 'index', query: params });
         },
         logout() {
             this.$store.dispatch('logout').then(() => {
