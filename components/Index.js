@@ -3,7 +3,6 @@ export default {
     template: `
         <div class="container" :class="{ 'loading': loading }">
             <div v-if="posts.length === 0" style="height: 400px;"></div>
-        
             <div v-for="post in posts" :key="post.id">
                 <h2><a :href="'/post/' + post.slug">{{ post.title }}</a></h2>
                 <div class="mb-2">
@@ -15,7 +14,6 @@ export default {
                 </div>
                 <p class="text-justify">{{ post.text }}</p>
             </div>
-            
             <nav aria-label="Page navigation example" v-if="pages.length > 1">
                 <ul class="pagination justify-content-center">
                     <li class="page-item" :class="{ 'disabled': page === 1 }">

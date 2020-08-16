@@ -14,7 +14,6 @@ export default {
                             </ul>
                         </div>
                     </div>
-                    
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" id="password" class="form-control" :class="{ 'is-invalid': errors.password }" v-model="password" required>
@@ -24,12 +23,10 @@ export default {
                             </ul>
                         </div>
                     </div>
-                    
                     <div class="form-group">
                         <label for="password-confirmation">Confirm password</label>
                         <input type="password" id="password-confirmation" class="form-control" v-model="passwordConfirmation" ref="passwordConfirmationElm" required>
                     </div>
-                    
                     <button type="submit" class="btn btn-primary">Register</button>
                 </form>
             </div>

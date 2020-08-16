@@ -12,7 +12,6 @@ export default {
                             <router-link :to="{ name: 'tag' }" class="nav-link">Tags</router-link>
                         </li>
                     </ul>
-                    
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <form class="form-inline mt-2 mt-lg-0" @submit.prevent="search">
                             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" v-model="query">
@@ -35,13 +34,11 @@ export default {
                     </div>
                 </nav>
             </header>
-            
             <main class="flex-shrink-0" role="main">
                 <div class="container mt-4">
                     <router-view />
                 </div>
             </main>
-            
             <footer class="footer mt-auto py-3">
                 <div class="container text-center">
                     <small class="text-muted">&copy; {{ nowYear }} <a href="https://qbbr.io/" class="text-muted">qbbr</a></small>
