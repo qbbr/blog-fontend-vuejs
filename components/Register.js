@@ -59,7 +59,7 @@ export default {
             const { username, password } = this;
             this.loading = true;
             this.$store.dispatch('register', { username, password }).then(() => {
-                this.$router.push({ name: 'index' });
+                this.$router.push({ name: 'posts' });
                 this.loading = false;
             }).catch(response => {
                 if (422 === response.status) { // validation error

@@ -35,7 +35,7 @@ export default {
             const { username, password } = this;
             this.loading = true;
             this.$store.dispatch('login', { username, password }).then(() => {
-                this.$router.push({ name: 'index' });
+                this.$router.push({ name: 'posts' });
                 this.loading = false;
             }).catch(response => {
                 this.error = response.data.message;

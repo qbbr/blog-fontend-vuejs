@@ -1,4 +1,4 @@
-import Index from './components/Index.js';
+import Post from './components/Post.js';
 import Tag from './components/Tag.js';
 import Login from './components/Login.js';
 import Profile from './components/Profile.js';
@@ -8,12 +8,12 @@ export const router = new VueRouter({
     mode: 'history',
     routes: [
         {
-            name: 'index',
+            name: 'posts',
             path: '/',
-            component: Index
+            component: Post
         },
         {
-            name: 'tag',
+            name: 'tags',
             path: '/tags',
             component: Tag
         },

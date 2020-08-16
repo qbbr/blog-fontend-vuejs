@@ -1,5 +1,5 @@
 export default {
-    name: 'Index',
+    name: 'Post',
     template: `
         <div class="container" :class="{ 'loading': loading }">
             <div v-if="posts.length === 0" style="height: 400px;" class="no-content">no posts...</div>
@@ -10,20 +10,20 @@ export default {
                     by <b>{{ post.user.username }}</b>
                 </div>
                 <div>
-                    <router-link :to="{ name: 'index', query: { tag: tag.name } }" v-for="tag in post.tags" :key="tag.name">{{ tag.name }}</router-link>
+                    <router-link :to="{ name: 'posts', query: { tag: tag.name } }" v-for="tag in post.tags" :key="tag.name">{{ tag.name }}</router-link>
                 </div>
                 <p class="text-justify">{{ post.text }}</p>
             </div>
             <nav aria-label="Page navigation example" v-if="pages.length > 1">
                 <ul class="pagination justify-content-center">
                     <li class="page-item" :class="{ 'disabled': page === 1 }">
-                        <router-link :to="{ name: 'index', query: getParams(page - 1) }" class="page-link">Previous</router-link>
+                        <router-link :to="{ name: 'posts', query: getParams(page - 1) }" class="page-link">Previous</router-link>
                     </li>
                     <li class="page-item" v-for="p in pages" :class="{ 'active': p === page }">
-                        <router-link :to="{ name: 'index', query: getParams(p) }" class="page-link">{{ p }}</router-link>
+                        <router-link :to="{ name: 'posts', query: getParams(p) }" class="page-link">{{ p }}</router-link>
                     </li>
                     <li class="page-item" :class="{ 'disabled': page === pages.length  }">
-                        <router-link :to="{ name: 'index', query: getParams(page + 1) }" class="page-link">Next</router-link>
+                        <router-link :to="{ name: 'posts', query: getParams(page + 1) }" class="page-link">Next</router-link>
                     </li>
                 </ul>
             </nav>

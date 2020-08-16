@@ -5,7 +5,7 @@ export default {
             <div v-if="tags.length === 0" style="height: 400px;"></div>
             <div v-if="tags.length !== 0">
                 <h3>Tags</h3>
-                <router-link :to="{ name: 'index', query: { tag: tag.name } }" v-for="tag in tags" :key="tag.name" class="btn btn-info m-1">
+                <router-link :to="{ name: 'posts', query: { tag: tag.name } }" v-for="tag in tags" :key="tag.name" class="btn btn-info m-1">
                     {{ tag.name }}
                     <span class="badge badge-light">{{ tag.postsCount }}</span>
                 </router-link>
