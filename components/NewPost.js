@@ -16,7 +16,7 @@ export default {
                     </div>
                     <div class="form-group">
                         <label for="text" class="sr-only">Text</label>
-                        <textarea id="text" class="form-control" v-model="text" :class="{ 'is-invalid': errors.text }" placeholder="text"></textarea>
+                        <textarea id="text" class="form-control" v-model="text" :class="{ 'is-invalid': errors.text }" placeholder="text" required></textarea>
                         <div v-if="errors.text" class="invalid-feedback">
                             <ul class="pl-3">
                                 <li v-for="error in errors.text">{{ error }}</li>
@@ -93,8 +93,8 @@ export default {
             }, response => {
                 if (422 === response.status) { // validation error
                     this.errors = response.data.errors;
+                    this.loading = false;
                 }
-                this.loading = false;
             });
         }
     }

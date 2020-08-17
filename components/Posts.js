@@ -3,7 +3,7 @@ export default {
     template: `
         <div class="container" :class="{ 'loading': loading }">
             <div v-if="posts.length === 0" style="height: 400px;" class="no-content">no posts...</div>
-            <div v-for="post in posts" :key="post.id">
+            <div v-else v-for="post in posts" :key="post.id">
                 <h2><router-link :to="{ name: 'post', params: { slug: post.slug } }">{{ post.title }}</router-link></h2>
                 <div class="mb-2">
                     <time :datetime="post.createdAt">{{ post.createdAt | formatDate }}</time>

@@ -2,7 +2,8 @@ export default {
     name: 'Post',
     template: `
         <div class="container" :class="{ 'loading': loading }">
-            <div v-if="post.length !== 0">
+            <div v-if="post.length === 0" style="height: 400px;" class="no-content">post not found</div>
+            <div v-else>
                 <h2>{{ post.title }}</h2>
                 <div class="mb-2">
                     <time :datetime="post.createdAt">{{ post.createdAt | formatDate }}</time>
@@ -32,6 +33,10 @@ export default {
                 document.title = this.post.title;
                 this.post = response.data;
                 this.loading = false;
+            }, response => {
+                if (404 === response.status) {
+                    this.loading = false;
+                }
             });
         }
     }

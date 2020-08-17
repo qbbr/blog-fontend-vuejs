@@ -2,8 +2,8 @@ export default {
     name: 'Tag',
     template: `
         <div class="container" :class="{ 'loading': loading }">
-            <div v-if="tags.length === 0" style="height: 400px;"></div>
-            <div v-if="tags.length !== 0">
+            <div v-if="tags.length === 0" style="height: 400px;" class="no-content">no tags...</div>
+            <div v-else>
                 <h3>Tags</h3>
                 <router-link :to="{ name: 'posts', query: { tag: tag.name } }" v-for="tag in tags" :key="tag.name" class="btn btn-info m-1">
                     {{ tag.name }}
