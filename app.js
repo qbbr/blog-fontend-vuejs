@@ -15,6 +15,10 @@ Vue.http.interceptors.push((request, next) => {
     })
 });
 
+Vue.filter('formatDate', (d) => {
+    return moment(String(d)).fromNow();
+});
+
 new Vue({
     router,
     store,
