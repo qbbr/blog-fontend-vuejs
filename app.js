@@ -10,7 +10,10 @@ Vue.http.interceptors.push((request, next) => {
         if (response.status === 401 && router.currentRoute.name !== 'login') {
             router.push({ name: 'login' });
             store.dispatch('logout');
+        } else if (response.status === 0) { // server unavailable
+            alert('Ooops. Server unavailable!');
         }
+
         return response;
     })
 });
