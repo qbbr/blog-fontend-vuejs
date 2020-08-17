@@ -5,6 +5,7 @@ export default {
     mixins: [PostForm],
     data() {
         return {
+            loading: true,
             formTitle: 'Edit post',
             formSubmitBtnText: 'Update'
         };
@@ -19,7 +20,6 @@ export default {
     },
     methods: {
         get() {
-            this.loading = true;
             Vue.http.get('private/user/post/' + this.id + '/').then(response => {
                 this.title = response.data.title;
                 this.text = response.data.text;
