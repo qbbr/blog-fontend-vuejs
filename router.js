@@ -5,6 +5,7 @@ import Login from './components/Login.js';
 import Profile from './components/Profile.js';
 import Register from './components/Register.js';
 import NewPost from './components/NewPost.js';
+import EditPost from './components/EditPost.js';
 
 export const router = new VueRouter({
     mode: 'history',
@@ -49,6 +50,12 @@ export const router = new VueRouter({
             path: '/new_post',
             component: NewPost,
             meta: { title: 'New post' }
+        },
+        {
+            name: 'edit_post',
+            path: '/edit_post/:id',
+            component: EditPost,
+            meta: { title: 'Edit post' }
         }
     ]
 });

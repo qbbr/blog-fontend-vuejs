@@ -9,6 +9,10 @@ export default {
                     <time :datetime="post.createdAt">{{ post.createdAt | formatDate }}</time>
                     by <b>{{ post.user.username }}</b>
                 </div>
+                <div v-if="post.user.username === $store.state.user.username">
+                    <router-link :to="{ name: 'edit_post', params: { id: post.id } }" class="btn btn-warning" title="edit post">✏</router-link>
+                    <button class="btn btn-danger" title="delete post" @click.prevent="remove(post.id)">❌️</button>
+                </div>
                 <div>
                     <router-link :to="{ name: 'posts', query: { tag: tag.name } }" v-for="tag in post.tags" :key="tag.name" class="mr-1">{{ tag.name }}</router-link>
                 </div>
@@ -74,7 +78,7 @@ export default {
         },
         getPosts() {
             this.loading = true;
-            Vue.http.get('posts/', {params: this.getParams(this.page)}).then(response => {
+            Vue.http.get('posts/', { params: this.getParams(this.page) }).then(response => {
                 let pages = [];
                 for (let i = 1; i <= Math.ceil(response.data.total / 10); i++) {
                     pages.push(i);
@@ -83,6 +87,18 @@ export default {
                 this.posts = response.data.results;
                 this.loading = false;
             });
+        },
+        edit(id) {
+            console.log('edit ', id);
+        },
+        remove(id) {
+            if (confirm('A u sure?')) {
+                Vue.http.delete('private/user/post/' + id + '/').then(response => {
+                    if (204 === response.status) { // no content
+                        this.getPosts();
+                    }
+                });
+            }
         }
     }
 }
