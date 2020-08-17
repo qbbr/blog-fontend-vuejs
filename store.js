@@ -11,6 +11,7 @@ export default new Vuex.Store({
     state: state,
     mutations: {
         auth_success(state, user) {
+            delete user.password;
             state.isAuth = true;
             state.user = user;
             localStorage.setItem('user', JSON.stringify(user));
