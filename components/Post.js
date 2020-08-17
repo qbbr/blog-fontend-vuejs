@@ -9,9 +9,9 @@ export default {
                     by <b>{{ post.user.username }}</b>
                 </div>
                 <div>
-                    <router-link :to="{ name: 'posts', query: { tag: tag.name } }" v-for="tag in post.tags" :key="tag.name">{{ tag.name }}</router-link>
+                    <router-link :to="{ name: 'posts', query: { tag: tag.name } }" v-for="tag in post.tags" :key="tag.name" class="mr-1">{{ tag.name }}</router-link>
                 </div>
-                <p class="text-justify">{{ post.text }}</p>
+                <p class="text-justify" v-html="post.text"></p>
             </div>
         </div>
     `,
@@ -29,10 +29,8 @@ export default {
             this.loading = true;
             const slug = this.$route.params.slug;
             Vue.http.get('post/' + slug + '/').then(response => {
-                this.post = response.data;
                 document.title = this.post.title;
-                this.loading = false;
-            }, response => {
+                this.post = response.data;
                 this.loading = false;
             });
         }
