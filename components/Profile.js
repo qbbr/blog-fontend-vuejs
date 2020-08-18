@@ -22,6 +22,7 @@ export default {
                         <input type="text" id="createdAt" class="form-control" v-model="createdAt" readonly>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">Update</button>
+                    <a href="" @click.prevent="remove" class="btn btn-link text-danger btn-block">Delete</a>
                 </form>
             </div>
         </div>
@@ -54,6 +55,17 @@ export default {
             Vue.http.put('private/user/', { about }).then(() => {
                 this.loading = false;
             });
+        },
+        remove() {
+            this.loading = true;
+            if (confirm('A u sure?')) {
+                Vue.http.delete('private/user/').then(response => {
+                    this.$store.dispatch('logout').then(() => {
+                        this.$router.push({ name: 'posts' });
+                        this.loading = false;
+                    });
+                });
+            }
         }
     }
 };
