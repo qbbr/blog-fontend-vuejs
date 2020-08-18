@@ -24,7 +24,7 @@ Vue.component('blog-post', {
     },
     methods: {
         highlight(title) {
-            let query = this.$router.currentRoute.query.query;
+            let query = this.$route.query.query || '';
             if (query.length) {
                 query.split(' ').forEach(value => {
                     title = title.replace(new RegExp(value.trim(), 'gi'), str => {
