@@ -9,7 +9,7 @@ export default {
                     <time :datetime="post.createdAt">{{ post.createdAt | formatDate }}</time>
                     by <b>{{ post.user.username }}</b>
                 </div>
-                <div v-if="post.user.username === $store.state.user.username">
+                <div v-if="post.user.username === username">
                     <router-link :to="{ name: 'edit_post', params: { id: post.id } }" class="btn btn-warning" title="edit post">✏</router-link>
                     <button class="btn btn-danger" title="delete post" @click.prevent="remove(post.id)">❌️</button>
                 </div>
@@ -54,6 +54,11 @@ export default {
         },
         query() {
             return this.$route.query.query || '';
+        },
+        username() {
+            return this.$store.state.user
+                ? this.$store.state.user.username
+                : '';
         }
     },
     watch: {
