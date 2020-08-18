@@ -2,7 +2,7 @@ Vue.component('blog-post', {
     props: ['post', 'isDetail'],
     template: `
         <div>
-            <h2><router-link :to="{ name: 'post', params: { slug: post.slug } }">{{ post.title }}</router-link></h2>
+            <h2><router-link :to="{ name: 'post', params: { slug: post.slug } }" v-html="highlight(post.title)"></router-link></h2>
             <div class="mb-2">
                 <time :datetime="post.createdAt">{{ post.createdAt | formatDate }}</time>
                 by <b>{{ post.user.username }}</b>
@@ -23,6 +23,18 @@ Vue.component('blog-post', {
         }
     },
     methods: {
+        highlight(title) {
+            let query = this.$router.currentRoute.query.query;
+            if (query.length) {
+                query.split(' ').forEach(value => {
+                    title = title.replace(new RegExp(value.trim(), 'gi'), str => {
+                        return '<b>' + str + '</b>';
+                    });
+                });
+            }
+
+            return title;
+        },
         edit(id) {
             this.$router.push({ name: 'edit_post', params: { id: id } });
         },
