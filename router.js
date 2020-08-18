@@ -1,11 +1,11 @@
-import Posts from './components/Posts.js';
-import Post from './components/Post.js';
-import Tag from './components/Tag.js';
-import Login from './components/Login.js';
-import Profile from './components/Profile.js';
-import Register from './components/Register.js';
-import NewPost from './components/NewPost.js';
-import EditPost from './components/EditPost.js';
+import Posts from './views/Posts.js';
+import Post from './views/Post.js';
+import Tag from './views/Tag.js';
+import Login from './views/Login.js';
+import Profile from './views/Profile.js';
+import Register from './views/Register.js';
+import NewPost from './views/NewPost.js';
+import EditPost from './views/EditPost.js';
 
 export const router = new VueRouter({
     mode: 'history',

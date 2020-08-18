@@ -1,25 +1,14 @@
+import '../components/blog-post.js';
+
 export default {
     name: 'Posts',
     template: `
         <div class="container" :class="{ 'loading': loading }">
             <div v-if="posts.length === 0" style="height: 400px;" class="no-content">no posts...</div>
-            <div v-else v-for="post in posts" :key="post.id">
-                <h2><router-link :to="{ name: 'post', params: { slug: post.slug } }">{{ post.title }}</router-link></h2>
-                <div class="mb-2">
-                    <time :datetime="post.createdAt">{{ post.createdAt | formatDate }}</time>
-                    by <b>{{ post.user.username }}</b>
-                </div>
-                <div v-if="post.user.username === username">
-                    <router-link :to="{ name: 'edit_post', params: { id: post.id } }" class="btn btn-warning" title="edit post">✏</router-link>
-                    <button class="btn btn-danger" title="delete post" @click.prevent="remove(post.id)">❌️</button>
-                </div>
-                <div>
-                    <router-link :to="{ name: 'posts', query: { tag: tag.name } }" v-for="tag in post.tags" :key="tag.name" class="mr-1">{{ tag.name }}</router-link>
-                </div>
+            <div v-else>
+                <blog-post v-for="post in posts" :key="post.id" :post="post" :isDetail="false"></blog-post>
             </div>
-            
             <hr/>
-            
             <nav aria-label="Page navigation example" v-if="pages.length > 1">
                 <ul class="pagination justify-content-center">
                     <li class="page-item" :class="{ 'disabled': page === 1 }">
@@ -44,6 +33,9 @@ export default {
     },
     mounted() {
         this.getPosts();
+        this.$root.$on('post.removed', id => {
+            this.getPosts();
+        });
     },
     computed: {
         page() {
@@ -54,11 +46,6 @@ export default {
         },
         query() {
             return this.$route.query.query || '';
-        },
-        username() {
-            return this.$store.state.user
-                ? this.$store.state.user.username
-                : '';
         }
     },
     watch: {
@@ -92,18 +79,6 @@ export default {
                 this.posts = response.data.results;
                 this.loading = false;
             });
-        },
-        edit(id) {
-            console.log('edit ', id);
-        },
-        remove(id) {
-            if (confirm('A u sure?')) {
-                Vue.http.delete('private/user/post/' + id + '/').then(response => {
-                    if (204 === response.status) { // no content
-                        this.getPosts();
-                    }
-                });
-            }
         }
     }
 }

@@ -1,18 +1,12 @@
+import '../components/blog-post.js';
+
 export default {
     name: 'Post',
     template: `
         <div class="container" :class="{ 'loading': loading }">
             <div v-if="post.length === 0" style="height: 400px;" class="no-content">post not found</div>
             <div v-else>
-                <h2>{{ post.title }}</h2>
-                <div class="mb-2">
-                    <time :datetime="post.createdAt">{{ post.createdAt | formatDate }}</time>
-                    by <b>{{ post.user.username }}</b>
-                </div>
-                <div>
-                    <router-link :to="{ name: 'posts', query: { tag: tag.name } }" v-for="tag in post.tags" :key="tag.name" class="mr-1">{{ tag.name }}</router-link>
-                </div>
-                <p class="text-justify" v-html="post.text"></p>
+                <blog-post :post="post" :isDetail="true"></blog-post>
             </div>
         </div>
     `,
@@ -24,6 +18,9 @@ export default {
     },
     mounted() {
         this.getPost();
+        this.$root.$on('post.removed', id => {
+            this.$router.push({ name: 'posts' });
+        });
     },
     methods: {
         getPost() {
