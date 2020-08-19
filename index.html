@@ -30,7 +30,7 @@
     </script>
     <script>
         // bootstrap navbar close on click
-        $(document).on('click', '.nav-link, .btn', event => {
+        $(document).on('click', '.navbar .nav-link, .navbar .btn, .navbar .navbar-brand', event => {
             $(".navbar-collapse").collapse('hide');
             event.stopPropagation();
         });
