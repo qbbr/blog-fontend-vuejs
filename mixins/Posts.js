@@ -74,11 +74,7 @@ export default {
         getPosts() {
             this.loading = true;
             Vue.http.get(this.postsUrl, { params: this.getParams(this.page) }).then(response => {
-                let pages = [];
-                for (let i = 1; i <= Math.ceil(response.data.total / 10); i++) {
-                    pages.push(i);
-                }
-                this.pages = pages;
+                this.pages = [...Array(Math.ceil(response.data.total / response.data.pageSize)).keys()].map(x => ++x);
                 this.posts = response.data.results;
                 this.loading = false;
             });
