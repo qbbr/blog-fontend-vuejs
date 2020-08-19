@@ -11,7 +11,7 @@ Vue.component('blog-post', {
                 <button class="btn btn-warning" title="edit post" @click.prevent="edit(post.id)">✏</button>
                 <button class="btn btn-danger" title="delete post" @click.prevent="remove(post.id)">❌️</button>
             </div>
-            <div>
+            <div class="mb-2" v-if="post.tags.length">
                 <router-link :to="{ name: 'posts', query: { tag: tag.name } }" v-for="tag in post.tags" :key="tag.name" class="mr-1">{{ tag.name }}</router-link>
             </div>
             <p v-if="isDetail" class="text-justify" v-html="post.text"></p>

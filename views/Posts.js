@@ -6,10 +6,13 @@ export default {
         <div class="container" :class="{ 'loading': loading }">
             <div v-if="posts.length === 0" style="height: 400px;" class="no-content">no posts...</div>
             <div v-else>
-                <blog-post v-for="post in posts" :key="post.id" :post="post" :isDetail="false"></blog-post>
+                <template v-for="(post, index) in posts">
+                    <blog-post :post="post" :isDetail="false"></blog-post>
+                    <hr v-if="posts.length - 1 !== index" />
+                </template>
             </div>
-            <hr/>
             <nav aria-label="Page navigation example" v-if="pages.length > 1">
+                <hr/>
                 <ul class="pagination justify-content-center">
                     <li class="page-item" :class="{ 'disabled': page === 1 }">
                         <router-link :to="{ name: 'posts', query: getParams(page - 1) }" class="page-link">Previous</router-link>

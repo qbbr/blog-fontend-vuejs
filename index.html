@@ -28,5 +28,12 @@
     <script nomodule>
         document.getElementById("app").innerHTML = 'Your browser doesn\'t support JavaScript modules :(';
     </script>
+    <script>
+        // bootstrap navbar close on click
+        $(document).on('click', '.nav-link, .btn', event => {
+            $(".navbar-collapse").collapse('hide');
+            event.stopPropagation();
+        });
+    </script>
 </body>
 </html>
