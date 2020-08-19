@@ -12,15 +12,16 @@ export default {
     watch: {
         title: 'saveDraft',
         text: 'saveDraft',
-        tags: 'saveDraft'
+        tags: 'saveDraft',
+        isPrivate: 'saveDraft'
     },
     mounted() {
         this.loadDraft();
     },
     methods: {
         saveDraft() {
-            const { title, text, tagsAsString } = this;
-            localStorage.setItem('post_draft', JSON.stringify({ title, text, tagsAsString }));
+            const { title, text, tagsAsString, isPrivate } = this;
+            localStorage.setItem('post_draft', JSON.stringify({ title, text, tagsAsString, isPrivate }));
         },
         loadDraft() {
             const draft = JSON.parse(localStorage.getItem('post_draft'));
@@ -33,6 +34,9 @@ export default {
                 }
                 if (draft.tagsAsString) {
                     this.tagsAsString = draft.tagsAsString;
+                }
+                if (draft.isPrivate) {
+                    this.isPrivate = draft.isPrivate;
                 }
             }
         },

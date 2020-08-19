@@ -28,6 +28,7 @@ export default {
                     tags.push(item.name);
                 });
                 this.tagsAsString = tags.join(', ');
+                this.isPrivate = response.data.isPrivate;
                 this.loading = false;
             }, response => {
                 if (422 === response.status) { // validation error

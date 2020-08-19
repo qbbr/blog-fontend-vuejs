@@ -64,4 +64,4 @@ export default {
             this.tags = tags;
         }
     },
-}
+};
