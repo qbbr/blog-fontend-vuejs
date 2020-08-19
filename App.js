@@ -13,7 +13,7 @@ export default {
                         </li>
                     </ul>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <form class="form-inline mt-2 mt-lg-0" @submit.stop.prevent="search">
+                        <form class="form-inline mt-2 mt-md-0" @submit.stop.prevent="search">
                             <div class="input-group w-100">
                                 <input class="form-control" type="search" placeholder="Search" aria-label="Search" v-model="query">
                                 <span class="input-group-append">
@@ -30,7 +30,7 @@ export default {
                                 <router-link :to="{ name: 'register' }" class="nav-link">Register</router-link>
                             </li>
                             <li class="nax-item mr-3" v-if="isLoggedIn">
-                                <router-link :to="{ name: 'new_post' }" class="btn btn-outline-success mt-2 mt-lg-0">&plus; new post</router-link>
+                                <router-link :to="{ name: 'new_post' }" class="btn btn-outline-success my-2 my-md-0">&plus; new post</router-link>
                             </li>
                             <li class="nax-item" v-if="isLoggedIn">
                                 <router-link :to="{ name: 'profile' }" class="nav-link">Profile</router-link>
