@@ -37,9 +37,9 @@ export default {
             });
         },
         submit() {
-            const { title, text, tags } = this;
+            const { title, text, tags, isPrivate } = this;
             this.loading = true;
-            Vue.http.put('private/user/post/' + this.id + '/', { title, text, tags }).then(() => {
+            Vue.http.put('private/user/post/' + this.id + '/', { title, text, tags, isPrivate }).then(() => {
                 this.loading = false;
                 this.$router.push({ name: 'posts' });
             }, response => {

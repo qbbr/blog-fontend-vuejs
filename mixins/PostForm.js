@@ -26,6 +26,12 @@ export default {
                         <label for="tags" class="sr-only">Tags</label>
                         <input type="text" id="tags" class="form-control" v-model="tagsAsString" placeholder="tags">
                     </div>
+                    <div class="form-group">
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="isPrivate" v-model="isPrivate">
+                            <label class="custom-control-label" for="isPrivate">private post</label>
+                        </div>
+                    </div>
                     <button type="submit" class="btn btn-primary btn-block">{{ formSubmitBtnText }}</button>
                 </form>
             </div>
@@ -39,7 +45,8 @@ export default {
             text: '',
             tags: [],
             tagsAsString: '',
-            errors: {},
+            isPrivate: false,
+            errors: {}
         }
     },
     watch: {

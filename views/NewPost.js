@@ -40,9 +40,9 @@ export default {
             localStorage.removeItem('post_draft');
         },
         submit() {
-            const { title, text, tags } = this;
+            const { title, text, tags, isPrivate } = this;
             this.loading = true;
-            Vue.http.post('private/user/post/', { title, text, tags }).then(() => {
+            Vue.http.post('private/user/post/', { title, text, tags, isPrivate }).then(() => {
                 this.clearDraft();
                 this.loading = false;
                 this.$router.push({ name: 'user_posts' });
