@@ -6,6 +6,7 @@ import Profile from './views/Profile.js';
 import Register from './views/Register.js';
 import NewPost from './views/NewPost.js';
 import EditPost from './views/EditPost.js';
+import UserPosts from './views/UserPosts.js';
 
 export const router = new VueRouter({
     mode: 'history',
@@ -56,6 +57,12 @@ export const router = new VueRouter({
             path: '/edit_post/:id',
             component: EditPost,
             meta: { title: 'Edit post' }
+        },
+        {
+            name: 'user_posts',
+            path: '/user/posts',
+            component: UserPosts,
+            meta: { title: 'My posts' }
         }
     ]
 });

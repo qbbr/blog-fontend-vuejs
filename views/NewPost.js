@@ -45,7 +45,7 @@ export default {
             Vue.http.post('private/user/post/', { title, text, tags }).then(() => {
                 this.clearDraft();
                 this.loading = false;
-                this.$router.push({ name: 'posts' });
+                this.$router.push({ name: 'user_posts' });
             }, response => {
                 if (422 === response.status) { // validation error
                     this.errors = response.data.errors;

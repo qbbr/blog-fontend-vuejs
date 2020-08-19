@@ -2,11 +2,11 @@ import '../components/blog-post.js';
 import Posts from '../mixins/Posts.js';
 
 export default {
-    name: 'Posts',
+    name: 'UserPosts',
     mixins: [Posts],
     data() {
         return {
-            postsUrl: 'posts/'
+            postsUrl: 'private/user/posts/'
         }
     }
 }

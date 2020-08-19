@@ -29,13 +29,16 @@ export default {
                             <li class="nav-item" v-if="!isLoggedIn">
                                 <router-link :to="{ name: 'register' }" class="nav-link">Register</router-link>
                             </li>
-                            <li class="nax-item mr-3" v-if="isLoggedIn">
+                            <li class="nav-item mr-1" v-if="isLoggedIn">
                                 <router-link :to="{ name: 'new_post' }" class="btn btn-outline-success my-2 my-md-0">&plus; new post</router-link>
                             </li>
-                            <li class="nax-item" v-if="isLoggedIn">
+                            <li class="nav-item" v-if="isLoggedIn">
+                                <router-link :to="{ name: 'user_posts' }" class="nav-link">My posts</router-link>
+                            </li>
+                            <li class="nav-item" v-if="isLoggedIn">
                                 <router-link :to="{ name: 'profile' }" class="nav-link">Profile</router-link>
                             </li>
-                            <li class="nax-item" v-if="isLoggedIn">
+                            <li class="nav-item" v-if="isLoggedIn">
                                 <a href="#" @click.prevent="logout" class="nav-link">Logout</a>
                             </li>
                         </ul>
