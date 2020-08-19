@@ -1,6 +1,6 @@
 # blog-fontend-vuejs
 
-Blog Frontend App on Vue.js for without `node_modules/` trash and any craps
+Blog Frontend App on Vue.js without `node_modules/` trash and any craps
 
 see [blog-backend-symfony](https://github.com/qbbr/blog-backend-symfony)
 
