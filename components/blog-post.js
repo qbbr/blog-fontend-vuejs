@@ -4,7 +4,7 @@ Vue.component('blog-post', {
         <div>
             <h2>
                 <span class="badge badge-primary" v-if="post.isPrivate">private</span>
-                <template v-if="isDetail>{{ post.title }}</template>
+                <template v-if="isDetail">{{ post.title }}</template>
                 <router-link v-else :to="{ name: 'post', params: { slug: post.slug } }" v-html="highlight(post.title)"></router-link>
             </h2>
             <div class="mb-2">
