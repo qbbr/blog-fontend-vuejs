@@ -1,6 +1,6 @@
 import Posts from './views/Posts.js';
 import Post from './views/Post.js';
-import Tag from './views/Tag.js';
+import Tags from './views/Tags.js';
 import Login from './views/Login.js';
 import Profile from './views/Profile.js';
 import Register from './views/Register.js';
@@ -24,7 +24,7 @@ export const router = new VueRouter({
         {
             name: 'tags',
             path: '/tags',
-            component: Tag,
+            component: Tags,
             meta: { title: 'Tags' }
         },
         {
