@@ -18,7 +18,7 @@ Vue.component('blog-post', {
             <div class="mb-2" v-if="post.tags.length">
                 <router-link :to="{ name: 'posts', query: { tag: tag.name } }" v-for="tag in post.tags" :key="tag.name" class="mr-1">{{ tag.name }}</router-link>
             </div>
-            <p v-if="isDetail" class="text-justify" v-html="post.text"></p>
+            <p v-if="isDetail" class="text-justify" v-html="post.html"></p>
         </div>
     `,
     data() {

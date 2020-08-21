@@ -1,6 +1,6 @@
 export default {
     template: `
-        <div class="card bg-light mx-auto" style="max-width: 30rem;" :class="{ 'loading': loading }">
+        <div class="card bg-light mx-auto" style="max-width: 40rem;" :class="{ 'loading': loading }">
             <div class="card-header">{{ formTitle }}</div>
             <div class="card-body">
                 <form @submit.prevent="submit">
@@ -15,7 +15,20 @@ export default {
                     </div>
                     <div class="form-group">
                         <label for="text" class="sr-only">Text</label>
-                        <textarea id="text" class="form-control" v-model="text" :class="{ 'is-invalid': errors.text }" placeholder="text" required></textarea>
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link active" id="markdown-tab" data-toggle="tab" href="#markdown" role="tab">Markdown</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="html-tab" data-toggle="tab" href="#html" role="tab" @click="preview">Preview</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane active" id="markdown" role="tabpanel">
+                                <textarea id="text" class="form-control border-top-0 rounded-top-0" style="height: 300px;" v-model="text" :class="{ 'is-invalid': errors.text }" placeholder="text" required></textarea>
+                            </div>
+                            <div class="tab-pane border-right border-bottom border-left rounded-bottom p-2" id="html" role="tabpanel" v-html="html" style="height: 300px;"></div>
+                        </div>
                         <div v-if="errors.text" class="invalid-feedback">
                             <ul class="pl-3">
                                 <li v-for="error in errors.text">{{ error }}</li>
@@ -46,7 +59,8 @@ export default {
             tags: [],
             tagsAsString: '',
             isPrivate: false,
-            errors: {}
+            errors: {},
+            html: ''
         }
     },
     watch: {
@@ -64,4 +78,14 @@ export default {
             this.tags = tags;
         }
     },
+    methods: {
+        preview() {
+            const { text } = this;
+            this.html = 'loading...';
+            Vue.http.post('private/user/md2html/', { text }).then(response => {
+                this.html = response.data.html;
+                this.previewLoading = false;
+            });
+        }
+    }
 };
