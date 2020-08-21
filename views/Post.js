@@ -27,7 +27,7 @@ export default {
             this.loading = true;
             const slug = this.$route.params.slug;
             Vue.http.get('post/' + slug + '/').then(response => {
-                document.title = this.post.title;
+                document.title = response.data.title;
                 this.post = response.data;
                 this.loading = false;
             }, response => {
