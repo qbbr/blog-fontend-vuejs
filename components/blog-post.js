@@ -44,7 +44,7 @@ Vue.component('blog-post', {
         },
         remove(id) {
             if (confirm('A u sure?')) {
-                Vue.http.delete('private/user/post/' + id + '/').then(response => {
+                Vue.http.delete('user/post/' + id + '/').then(response => {
                     if (204 === response.status) { // no content
                         this.$root.$emit('post.removed', id);
                     }

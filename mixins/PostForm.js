@@ -82,7 +82,7 @@ export default {
         preview() {
             const { text } = this;
             this.html = 'loading...';
-            Vue.http.post('private/user/md2html/', { text }).then(response => {
+            Vue.http.post('user/post/md2html/', { text }).then(response => {
                 this.html = response.data.html;
                 this.previewLoading = false;
             });

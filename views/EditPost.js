@@ -20,7 +20,7 @@ export default {
     },
     methods: {
         get() {
-            Vue.http.get('private/user/post/' + this.id + '/').then(response => {
+            Vue.http.get('user/post/' + this.id + '/').then(response => {
                 this.title = response.data.title;
                 this.text = response.data.text;
                 let tags = [];
@@ -40,7 +40,7 @@ export default {
         submit() {
             const { title, text, tags, isPrivate } = this;
             this.loading = true;
-            Vue.http.put('private/user/post/' + this.id + '/', { title, text, tags, isPrivate }).then(() => {
+            Vue.http.put('user/post/' + this.id + '/', { title, text, tags, isPrivate }).then(() => {
                 this.loading = false;
                 this.$router.push({ name: 'posts' });
             }, response => {

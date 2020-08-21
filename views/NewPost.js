@@ -46,7 +46,7 @@ export default {
         submit() {
             const { title, text, tags, isPrivate } = this;
             this.loading = true;
-            Vue.http.post('private/user/post/', { title, text, tags, isPrivate }).then(() => {
+            Vue.http.post('user/post/', { title, text, tags, isPrivate }).then(() => {
                 this.clearDraft();
                 this.loading = false;
                 this.$router.push({ name: 'user_posts' });

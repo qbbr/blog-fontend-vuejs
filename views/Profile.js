@@ -47,7 +47,7 @@ export default {
     methods: {
         get() {
             this.loading = true;
-            Vue.http.get('private/user/').then(response => {
+            Vue.http.get('user/profile/').then(response => {
                 this.username = response.data.username;
                 this.about = response.data.about;
                 this.createdAt = response.data.createdAt;
@@ -58,14 +58,14 @@ export default {
         update() {
             const { about } = this;
             this.loading = true;
-            Vue.http.put('private/user/', { about }).then(() => {
+            Vue.http.put('user/profile/', { about }).then(() => {
                 this.loading = false;
             });
         },
         removeAllPosts() {
             this.loading = true;
             if (confirm('Remove all posts?')) {
-                Vue.http.delete('private/user/posts/').then(() => {
+                Vue.http.delete('user/posts/').then(() => {
                     this.get();
                     this.loading = false;
                 });
@@ -76,7 +76,7 @@ export default {
         removeUser() {
             this.loading = true;
             if (confirm('Remove user with all userdata?')) {
-                Vue.http.delete('private/user/').then(() => {
+                Vue.http.delete('user/profile/').then(() => {
                     this.$store.dispatch('logout').then(() => {
                         this.$router.push({ name: 'posts' });
                         this.loading = false;
