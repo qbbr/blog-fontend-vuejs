@@ -1,8 +1,8 @@
-import '../components/blog-post.js';
-import Posts from '../mixins/Posts.js';
+import '../../components/blog-post.js';
+import Posts from '../../mixins/Posts.js';
 
 export default {
-    name: 'UserPosts',
+    name: 'Posts',
     mixins: [Posts],
     data() {
         return {

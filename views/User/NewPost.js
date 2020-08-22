@@ -1,4 +1,4 @@
-import PostForm from '../mixins/PostForm.js';
+import PostForm from '../../mixins/PostForm.js';
 
 export default {
     name: 'NewPost',

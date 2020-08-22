@@ -1,4 +1,4 @@
-import PostForm from '../mixins/PostForm.js';
+import PostForm from '../../mixins/PostForm.js';
 
 export default {
     name: 'EditPost',
@@ -42,7 +42,7 @@ export default {
             this.loading = true;
             Vue.http.put('user/post/' + this.id + '/', { title, text, tags, isPrivate }).then(() => {
                 this.loading = false;
-                this.$router.push({ name: 'posts' });
+                this.$router.push({ name: 'user_posts' });
             }, response => {
                 if (422 === response.status) { // validation error
                     this.errors = response.data.errors;

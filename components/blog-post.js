@@ -5,7 +5,7 @@ Vue.component('blog-post', {
             <h2>
                 <span class="badge badge-primary" v-if="post.isPrivate">private</span>
                 <template v-if="isDetail">{{ post.title }}</template>
-                <router-link v-else :to="{ name: 'post', params: { slug: post.slug } }" v-html="highlight(post.title)"></router-link>
+                <router-link v-else :to="routeDetail(post)" v-html="highlight(post.title)"></router-link>
             </h2>
             <div class="mb-2">
                 <time :datetime="post.createdAt">{{ post.createdAt | formatDate }}</time>
@@ -27,6 +27,13 @@ Vue.component('blog-post', {
         }
     },
     methods: {
+        routeDetail(post) {
+            if ('user_posts' === this.$route.name) { // userspace
+                return { name: 'user_post', params: { id: post.id } };
+            }
+
+            return { name: 'post', params: { slug: post.slug } };
+        },
         highlight(title) {
             let query = this.$route.query.query || '';
             if (query.length) {
