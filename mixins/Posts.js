@@ -5,6 +5,14 @@ export default {
         <div class="container" :class="{ 'loading': loading }">
             <div v-if="posts.length === 0" style="height: 400px;" class="no-content">no posts...</div>
             <div v-else>
+                <div class="text-center" v-if="$route.name === 'posts' && posts.length > 1">
+                    <div class="alert alert-info d-md-inline-block">
+                        sort by: 
+                        <router-link :to="{ name: 'posts', query: getSortParams('created') }" v-html="decorateSortName('created')" class="btn btn-link"></router-link>
+                        |
+                        <router-link :to="{ name: 'posts', query: getSortParams('title') }" v-html="decorateSortName('title')" class="btn btn-link"></router-link>
+                    </div>
+                </div>
                 <template v-for="(post, index) in posts">
                     <blog-post :post="post" :isDetail="false"></blog-post>
                     <hr v-if="posts.length - 1 !== index" />
@@ -31,7 +39,9 @@ export default {
             loading: true,
             postsUrl: '',
             posts: [],
-            pages: []
+            pages: [],
+            defaultSort: 'created',
+            defaultOrder: 'desc'
         }
     },
     mounted() {
@@ -49,14 +59,42 @@ export default {
         },
         query() {
             return this.$route.query.query || '';
+        },
+        sort() {
+            return this.$route.query.sort || this.defaultSort;
+        },
+        order() {
+            return this.$route.query.order || this.defaultOrder;
         }
     },
     watch: {
         page: 'getPosts',
         tag: 'getPosts',
-        query: 'getPosts'
+        query: 'getPosts',
+        sort: 'getPosts',
+        order: 'getPosts'
     },
     methods: {
+        decorateSortName(sort) {
+            if (this.sort === sort) {
+                return [
+                    '<b>',
+                        (this.order === 'desc' ? '&#8681;' : '&#8679;'), ' ', sort,
+                    '</b>'
+                ].join('\n');
+            }
+
+            return sort;
+        },
+        getSortParams(sort) {
+            let params = this.getParams(1);
+            params.sort = sort;
+            params.order = (sort === this.sort)
+                ? (this.order === 'desc' ? 'asc' : 'desc')
+                : this.order;
+
+            return params;
+        },
         getParams(page) {
             const params = {};
             if (page !== 1) {
@@ -67,6 +105,10 @@ export default {
             }
             if (this.query.length) {
                 params.query = this.query;
+            }
+            if (this.sort !== this.defaultSort || this.order !== this.defaultOrder) {
+                params.sort = this.sort;
+                params.order = this.order;
             }
 
             return params;
