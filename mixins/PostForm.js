@@ -19,11 +19,11 @@ export default {
                                 <a class="nav-link" id="html-tab" data-toggle="tab" href="#html" role="tab" @click="preview">Preview</a>
                             </li>
                         </ul>
-                        <div class="tab-content" id="myTabContent">
+                        <div class="tab-content">
                             <div class="tab-pane active" id="markdown" role="tabpanel">
-                                <textarea id="text" class="form-control border-top-0 rounded-top-0" style="height: 300px;" v-model="text" :class="{ 'is-invalid': errors.text }" placeholder="text" required></textarea>
+                                <textarea id="text" class="form-control border-top-0 rounded-top-0" style="height: 300px;" ref="text" v-model="text" :class="{ 'is-invalid': errors.text }" placeholder="text" required></textarea>
                             </div>
-                            <div class="tab-pane border-right border-bottom border-left rounded-bottom p-2" id="html" role="tabpanel" v-html="html" style="height: 300px;"></div>
+                            <div class="tab-pane border-right border-bottom border-left rounded-bottom p-2" :style="{ height: htmlHeight }" id="html" role="tabpanel" v-html="html"></div>
                         </div>
                         <form-field-errors :errors="errors.text"></form-field-errors>
                     </div>
@@ -52,7 +52,8 @@ export default {
             tagsAsString: '',
             isPrivate: false,
             errors: {},
-            html: ''
+            html: '',
+            htmlHeight: '300px'
         }
     },
     watch: {
@@ -72,6 +73,7 @@ export default {
     },
     methods: {
         preview() {
+            this.htmlHeight = this.$refs.text.style.height;
             const { text } = this;
             this.html = 'loading...';
             Vue.http.post('user/post/md2html/', { text }).then(response => {

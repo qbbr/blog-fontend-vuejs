@@ -10,7 +10,7 @@ export default {
                     <hr v-if="posts.length - 1 !== index" />
                 </template>
             </div>
-            <nav aria-label="Page navigation example" v-if="pages.length > 1">
+            <nav aria-label="posts navigation" v-if="pages.length > 1">
                 <hr/>
                 <ul class="pagination justify-content-center">
                     <li class="page-item" :class="{ 'disabled': page === 1 }">
