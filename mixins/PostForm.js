@@ -7,11 +7,7 @@ export default {
                     <div class="form-group">
                         <label for="title" class="sr-only">Title</label>
                         <input type="text" id="title" class="form-control" :class="{ 'is-invalid': errors.title }" v-model="title" placeholder="title" required>
-                        <div v-if="errors.title" class="invalid-feedback">
-                            <ul class="pl-3">
-                                <li v-for="error in errors.title">{{ error }}</li>
-                            </ul>
-                        </div>
+                        <form-field-errors :errors="errors.title"></form-field-errors>
                     </div>
                     <div class="form-group">
                         <label for="text" class="sr-only">Text</label>
@@ -29,11 +25,7 @@ export default {
                             </div>
                             <div class="tab-pane border-right border-bottom border-left rounded-bottom p-2" id="html" role="tabpanel" v-html="html" style="height: 300px;"></div>
                         </div>
-                        <div v-if="errors.text" class="invalid-feedback">
-                            <ul class="pl-3">
-                                <li v-for="error in errors.text">{{ error }}</li>
-                            </ul>
-                        </div>
+                        <form-field-errors :errors="errors.text"></form-field-errors>
                     </div>
                     <div class="form-group">
                         <label for="tags" class="sr-only">Tags</label>

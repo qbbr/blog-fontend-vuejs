@@ -1,3 +1,5 @@
+import '../components/form-field-errors.js';
+
 export default {
     name: 'Register',
     template: `
@@ -8,20 +10,12 @@ export default {
                     <div class="form-group">
                         <label for="username">Username</label>
                         <input type="text" id="username" class="form-control" :class="{ 'is-invalid': errors.username }" v-model="username" required>
-                        <div v-if="errors.username" class="invalid-feedback">
-                            <ul class="pl-3">
-                                <li v-for="error in errors.username">{{ error }}</li>
-                            </ul>
-                        </div>
+                        <form-field-errors :errors="errors.username"></form-field-errors>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" id="password" class="form-control" :class="{ 'is-invalid': errors.password }" v-model="password" required>
-                        <div v-if="errors.password" class="invalid-feedback">
-                            <ul class="pl-3">
-                                <li v-for="error in errors.password">{{ error }}</li>
-                            </ul>
-                        </div>
+                        <form-field-errors :errors="errors.password"></form-field-errors>
                     </div>
                     <div class="form-group">
                         <label for="password-confirmation">Confirm password</label>
