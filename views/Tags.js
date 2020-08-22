@@ -25,7 +25,9 @@ export default {
         getTags() {
             this.loading = true;
             Vue.http.get('tags/').then(response => {
-                this.tags = response.data;
+                this.tags = response.data
+                    .filter(tag => tag.postsCount > 0)
+                    .sort((a, b) => b.postsCount - a.postsCount);
                 this.loading = false;
             });
         }
