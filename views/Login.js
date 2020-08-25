@@ -35,8 +35,10 @@ export default {
             const { username, password } = this;
             this.loading = true;
             this.$store.dispatch('login', { username, password }).then(() => {
-                this.$router.push({ name: 'posts' });
+                let location = localStorage.getItem('last_location') || { name: 'posts' };
+                this.$router.push(location);
                 this.loading = false;
+                localStorage.removeItem('last_location');
             }).catch(response => {
                 this.error = response.data.message;
                 this.loading = false;

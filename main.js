@@ -7,7 +7,8 @@ Vue.http.options.root = 'http://127.0.0.1:8001/';
 
 Vue.http.interceptors.push((request, next) => {
     next((response) => {
-        if (response.status === 401 && router.currentRoute.name !== 'login') {
+        if (response.status === 401 && router.currentRoute.name !== 'login') { // Unauthorized
+            localStorage.setItem('last_location', router.currentRoute.fullPath); // for redirect after login
             router.push({ name: 'login' });
             store.dispatch('logout');
         } else if (response.status === 0) { // server unavailable
@@ -22,7 +23,7 @@ Vue.filter('formatDate', (d) => {
     return moment(String(d)).fromNow();
 });
 
-new Vue({
+const app = new Vue({
     router,
     store,
     render: h => h(App)
