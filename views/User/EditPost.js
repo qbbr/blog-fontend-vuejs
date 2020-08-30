@@ -42,7 +42,7 @@ export default {
             this.loading = true;
             Vue.http.put('user/post/' + this.id + '/', { title, text, tags, isPrivate }).then(() => {
                 this.loading = false;
-                this.$router.push({ name: 'user_posts' });
+                this.$router.push({ name: 'user_post', id: this.id });
             }, response => {
                 if (422 === response.status) { // validation error
                     this.errors = response.data.errors;
