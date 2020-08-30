@@ -3,7 +3,10 @@ import { router } from './router.js';
 import store from './store.js';
 
 // Vue.config.productionTip = false;
-Vue.http.options.root = 'http://127.0.0.1:8001/';
+// blog-backend-symfony
+//Vue.http.options.root = 'http://127.0.0.1:8001/';
+// blog-backend-flask
+Vue.http.options.root = 'http://127.0.0.1:5000/';
 
 Vue.http.interceptors.push((request, next) => {
     next((response) => {
