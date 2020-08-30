@@ -6,7 +6,8 @@ export default {
     mixins: [Posts],
     data() {
         return {
-            postsUrl: 'user/posts/'
+            postsUrl: 'user/posts/',
+            routeName: 'user_posts'
         }
     }
 }

@@ -8,9 +8,9 @@ export default {
                 <div class="text-center" v-if="$route.name === 'posts' && posts.length > 1">
                     <div class="alert alert-info d-md-inline-block">
                         sort by: 
-                        <router-link :to="{ name: 'posts', query: getSortParams('created') }" v-html="decorateSortName('created')" class="btn btn-link"></router-link>
+                        <router-link :to="{ name: routeName, query: getSortParams('created') }" v-html="decorateSortName('created')" class="btn btn-link"></router-link>
                         |
-                        <router-link :to="{ name: 'posts', query: getSortParams('title') }" v-html="decorateSortName('title')" class="btn btn-link"></router-link>
+                        <router-link :to="{ name: routeName, query: getSortParams('title') }" v-html="decorateSortName('title')" class="btn btn-link"></router-link>
                     </div>
                 </div>
                 <template v-for="(post, index) in posts">
@@ -22,13 +22,13 @@ export default {
                 <hr/>
                 <ul class="pagination justify-content-center">
                     <li class="page-item" :class="{ 'disabled': page === 1 }">
-                        <router-link :to="{ name: 'posts', query: getParams(page - 1) }" class="page-link">Previous</router-link>
+                        <router-link :to="{ name: routeName, query: getParams(page - 1) }" class="page-link">Previous</router-link>
                     </li>
                     <li class="page-item" v-for="p in pages" :class="{ 'active': p === page }">
-                        <router-link :to="{ name: 'posts', query: getParams(p) }" class="page-link">{{ p }}</router-link>
+                        <router-link :to="{ name: routeName, query: getParams(p) }" class="page-link">{{ p }}</router-link>
                     </li>
                     <li class="page-item" :class="{ 'disabled': page === pages.length  }">
-                        <router-link :to="{ name: 'posts', query: getParams(page + 1) }" class="page-link">Next</router-link>
+                        <router-link :to="{ name: routeName, query: getParams(page + 1) }" class="page-link">Next</router-link>
                     </li>
                 </ul>
             </nav>
