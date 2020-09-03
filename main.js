@@ -26,7 +26,7 @@ Vue.filter('formatDate', (d) => {
     return moment(String(d)).fromNow();
 });
 
-const app = new Vue({
+new Vue({
     router,
     store,
     render: h => h(App)

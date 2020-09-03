@@ -7,7 +7,7 @@ export default {
             <div v-else>
                 <div class="text-center" v-if="$route.name === 'posts' && posts.length > 1">
                     <div class="alert alert-info d-md-inline-block">
-                        sort by: 
+                        sort by:
                         <router-link :to="{ name: routeName, query: getSortParams('created') }" v-html="decorateSortName('created')" class="btn btn-link"></router-link>
                         |
                         <router-link :to="{ name: routeName, query: getSortParams('title') }" v-html="decorateSortName('title')" class="btn btn-link"></router-link>
@@ -122,4 +122,4 @@ export default {
             });
         }
     }
-}
+};

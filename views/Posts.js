@@ -1,4 +1,3 @@
-import '../components/blog-post.js';
 import Posts from '../mixins/Posts.js';
 
 export default {
@@ -10,4 +9,4 @@ export default {
             routeName: 'posts'
         }
     }
-}
+};
