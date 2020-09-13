@@ -22,13 +22,13 @@ export default {
                 <hr/>
                 <ul class="pagination justify-content-center">
                     <li class="page-item" :class="{ 'disabled': page === 1 }">
-                        <router-link :to="{ name: routeName, query: getParams(page - 1) }" class="page-link">Previous</router-link>
+                        <router-link :to="{ name: routeName, query: getParams(page - 1) }" class="page-link"  @click.native="scrollTop">Previous</router-link>
                     </li>
                     <li class="page-item" v-for="p in pages" :class="{ 'active': p === page }">
-                        <router-link :to="{ name: routeName, query: getParams(p) }" class="page-link">{{ p }}</router-link>
+                        <router-link :to="{ name: routeName, query: getParams(p) }" class="page-link"  @click.native="scrollTop">{{ p }}</router-link>
                     </li>
                     <li class="page-item" :class="{ 'disabled': page === pages.length  }">
-                        <router-link :to="{ name: routeName, query: getParams(page + 1) }" class="page-link">Next</router-link>
+                        <router-link :to="{ name: routeName, query: getParams(page + 1) }" class="page-link" @click.native="scrollTop">Next</router-link>
                     </li>
                 </ul>
             </nav>
@@ -36,8 +36,11 @@ export default {
     `,
     data() {
         return {
-            loading: true,
+            // must be override, where mixin used (Posts.js, User/Posts.js) {{{
             postsUrl: '',
+            routeName: '',
+            // }}}
+            loading: true,
             posts: [],
             pages: [],
             defaultSort: 'created',
@@ -75,6 +78,9 @@ export default {
         order: 'getPosts'
     },
     methods: {
+        scrollTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        },
         decorateSortName(sort) {
             if (this.sort === sort) {
                 return [
