@@ -4,7 +4,7 @@ Blog Frontend App on Vue.js without `node_modules/` trash and any craps
 
 see backend's:
 
- * [blog-backend-symfony](https://github.com/qbbr/blog-backend-symfony) on PHP7
+ * [blog-backend-symfony](https://github.com/qbbr/blog-backend-symfony) on PHP7.4
  * [blog-backend-flask](https://github.com/qbbr/blog-backend-flask) on Python3
 
 ## depends
