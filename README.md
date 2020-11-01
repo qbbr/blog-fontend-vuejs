@@ -1,4 +1,4 @@
-# blog-fontend-vuejs
+# blog-frontend-vuejs
 
 Blog Frontend App on Vue.js without `node_modules/` trash and any craps
 
