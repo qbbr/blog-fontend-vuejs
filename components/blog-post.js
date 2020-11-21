@@ -50,13 +50,15 @@ Vue.component('blog-post', {
             this.$router.push({ name: 'edit_post', params: { id: id } });
         },
         remove(id) {
-            if (confirm('A u sure?')) {
-                Vue.http.delete('user/post/' + id + '/').then(response => {
-                    if (204 === response.status) { // no content
-                        this.$root.$emit('post.removed', id);
-                    }
-                });
-            }
+            bootbox.confirm('A u sure?', result => {
+                if (result) {
+                    Vue.http.delete('user/post/' + id + '/').then(response => {
+                        if (204 === response.status) { // no content
+                            this.$root.$emit('post.removed', id);
+                        }
+                    });
+                }
+            });
         }
     }
 });

@@ -46,7 +46,7 @@ export default {
                 </nav>
             </header>
             <main class="flex-shrink-0" role="main">
-                <div class="container mt-4">
+                <div class="container my-4">
                     <router-view />
                 </div>
             </main>

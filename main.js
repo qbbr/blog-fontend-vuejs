@@ -4,7 +4,7 @@ import store from './store.js';
 
 // Vue.config.productionTip = false;
 // blog-backend-symfony
-//Vue.http.options.root = 'http://127.0.0.1:8001/';
+// Vue.http.options.root = 'http://127.0.0.1:8000/';
 // blog-backend-flask
 Vue.http.options.root = 'http://127.0.0.1:5000/';
 
@@ -15,7 +15,7 @@ Vue.http.interceptors.push((request, next) => {
             router.push({ name: 'login' });
             store.dispatch('logout');
         } else if (response.status === 0) { // server unavailable
-            alert('Ooops. Server unavailable!');
+            bootbox.alert('Ooops. Server unavailable!');
         }
 
         return response;

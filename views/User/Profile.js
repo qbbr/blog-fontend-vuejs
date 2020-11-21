@@ -64,27 +64,31 @@ export default {
         },
         removeAllPosts() {
             this.loading = true;
-            if (confirm('Remove all posts?')) {
-                Vue.http.delete('user/posts/').then(() => {
-                    this.get();
+            bootbox.confirm('Remove all posts?', result => {
+                if (result) {
+                    Vue.http.delete('user/posts/').then(() => {
+                        this.get();
+                        this.loading = false;
+                    });
+                } else {
                     this.loading = false;
-                });
-            } else {
-                this.loading = false;
-            }
+                }
+            });
         },
         removeUser() {
             this.loading = true;
-            if (confirm('Remove user with all userdata?')) {
-                Vue.http.delete('user/profile/').then(() => {
-                    this.$store.dispatch('logout').then(() => {
-                        this.$router.push({ name: 'posts' });
-                        this.loading = false;
+            bootbox.confirm('Remove user with all userdata?', result => {
+                if (result) {
+                    Vue.http.delete('user/profile/').then(() => {
+                        this.$store.dispatch('logout').then(() => {
+                            this.$router.push({ name: 'posts' });
+                            this.loading = false;
+                        });
                     });
-                });
-            } else {
-                this.loading = false;
-            }
+                } else {
+                    this.loading = false;
+                }
+            });
         }
     }
 };
