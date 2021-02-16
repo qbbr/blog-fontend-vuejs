@@ -4,9 +4,9 @@ import store from './store.js';
 
 // Vue.config.productionTip = false;
 // blog-backend-symfony
-// Vue.http.options.root = 'http://127.0.0.1:8000/';
+Vue.http.options.root = 'http://127.0.0.1:8000/';
 // blog-backend-flask
-Vue.http.options.root = 'http://127.0.0.1:5000/';
+//Vue.http.options.root = 'http://127.0.0.1:5000/';
 
 Vue.http.interceptors.push((request, next) => {
     next((response) => {
