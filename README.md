@@ -1,6 +1,6 @@
 # blog-frontend-vuejs
 
-Blog Frontend App on Vue.js without `node_modules/` trash and any craps
+Blog Frontend App on Vue.js v2.x without `node_modules/` trash and any craps
 
 see backend's:
 
