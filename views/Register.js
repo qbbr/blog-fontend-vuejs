@@ -8,20 +8,20 @@ export default {
             <div class="card-body">
                 <form @submit.prevent="register">
                     <div class="mb-3">
-                        <label for="username">Username</label>
+                        <label for="username" class="form-label">Username</label>
                         <input type="text" id="username" class="form-control" :class="{ 'is-invalid': errors.username }" v-model="username" required>
                         <form-field-errors :errors="errors.username"></form-field-errors>
                     </div>
                     <div class="mb-3">
-                        <label for="password">Password</label>
+                        <label for="password" class="form-label">Password</label>
                         <input type="password" id="password" class="form-control" :class="{ 'is-invalid': errors.password }" v-model="password" required>
                         <form-field-errors :errors="errors.password"></form-field-errors>
                     </div>
                     <div class="mb-3">
-                        <label for="password-confirmation">Confirm password</label>
+                        <label for="password-confirmation" class="form-label">Confirm password</label>
                         <input type="password" id="password-confirmation" class="form-control" v-model="passwordConfirmation" ref="passwordConfirmationElm" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Register</button>
+                    <button type="submit" class="btn btn-primary w-100">Register</button>
                 </form>
             </div>
         </div>

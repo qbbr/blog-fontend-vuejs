@@ -4,19 +4,19 @@ export default {
             <div class="card-header">{{ formTitle }}</div>
             <div class="card-body">
                 <form @submit.prevent="submit">
-                    <div class="form-group">
-                        <label for="title" class="sr-only">Title</label>
+                    <div class="mb-3">
+                        <label for="title" class="form-label visually-hidden">Title</label>
                         <input type="text" id="title" class="form-control" :class="{ 'is-invalid': errors.title }" v-model="title" placeholder="title" required>
                         <form-field-errors :errors="errors.title"></form-field-errors>
                     </div>
-                    <div class="form-group">
-                        <label for="text" class="sr-only">Text</label>
+                    <div class="mb-3">
+                        <label for="text" class="form-label visually-hidden">Text</label>
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link active" id="markdown-tab" data-toggle="tab" href="#markdown" role="tab">Markdown</a>
+                                <button type="button" class="nav-link active" id="markdown-tab" data-bs-toggle="tab" data-bs-target="#markdown" role="tab">Markdown</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="html-tab" data-toggle="tab" href="#html" role="tab" @click="preview">Preview</a>
+                                <button type="button" class="nav-link" id="html-tab" data-bs-toggle="tab" data-bs-target="#html" role="tab" @click="preview">Preview</button>
                             </li>
                         </ul>
                         <div class="tab-content">
@@ -27,14 +27,14 @@ export default {
                         </div>
                         <form-field-errors :errors="errors.text"></form-field-errors>
                     </div>
-                    <div class="form-group">
-                        <label for="tags" class="sr-only">Tags</label>
+                    <div class="mb-3">
+                        <label for="tags" class="form-label visually-hidden">Tags</label>
                         <input type="text" id="tags" class="form-control" v-model="tagsAsString" placeholder="tags">
                     </div>
-                    <div class="form-group">
-                        <div class="custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input" id="isPrivate" v-model="isPrivate">
-                            <label class="custom-control-label" for="isPrivate">private post</label>
+                    <div class="mb-3">
+                        <div class="form-label custom-control custom-switch">
+                            <input type="checkbox" class="form-check-input" id="isPrivate" v-model="isPrivate">
+                            <label class="form-check-label" for="isPrivate">private post</label>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">{{ formSubmitBtnText }}</button>
@@ -78,7 +78,6 @@ export default {
             this.html = 'loading...';
             Vue.http.post('user/post/md2html/', { text }).then(response => {
                 this.html = response.data.html;
-                this.previewLoading = false;
             });
         }
     }

@@ -9,14 +9,14 @@ export default {
                         {{ error }}
                     </div>
                     <div class="mb-3">
-                        <label for="username" class="visually-hidden">Username</label>
+                        <label for="username" class="form-label visually-hidden">Username</label>
                         <input type="text" id="username" class="form-control" v-model="username" placeholder="username" required>
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="visually-hidden">Password</label>
+                        <label for="password" class="form-label visually-hidden">Password</label>
                         <input type="password" id="password" class="form-control" v-model="password" placeholder="password" required>
                     </div>
-                    <button type="submit" class="btn btn-primary w-100">Login</button>
+                    <button type="submit" class="btn btn-success w-100">Login</button>
                 </form>
             </div>
         </div>

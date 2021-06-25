@@ -5,28 +5,28 @@ export default {
             <div class="card-header">Profile</div>
             <div class="card-body">
                 <form @submit.prevent="update">
-                    <div class="form-group">
-                        <label for="username">Username</label>
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
                         <input type="text" id="username" class="form-control" v-model="username" readonly>
                     </div>
-                    <div class="form-group">
-                        <label for="token">Token</label>
+                    <div class="mb-3">
+                        <label for="token" class="form-label">Token</label>
                         <input type="text" id="token" class="form-control" v-model="token" readonly>
                     </div>
-                    <div class="form-group">
-                        <label for="about">About</label>
+                    <div class="mb-3">
+                        <label for="about" class="form-label">About</label>
                         <textarea id="about" class="form-control" v-model="about"></textarea>
                     </div>
-                    <div class="form-group">
-                        <label for="createdAt">Created at</label>
+                    <div class="mb-3">
+                        <label for="createdAt" class="form-label">Created at</label>
                         <input type="text" id="createdAt" class="form-control" v-model="createdAt" readonly>
                     </div>
-                    <div class="form-group">
+                    <div class="mb-3">
                         Posts: <span>{{ postsCount }}</span>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block">Update profile</button>
-                    <button type="button" @click.prevent="removeAllPosts" class="btn btn-link text-danger btn-block">Remove all posts</button>
-                    <button type="button" @click.prevent="removeUser" class="btn btn-link text-danger btn-block">Remove user</button>
+                    <button type="submit" class="btn btn-primary w-100">Update profile</button>
+                    <button type="button" @click.prevent="removeAllPosts" class="btn btn-link text-danger w-100">Remove all posts</button>
+                    <button type="button" @click.prevent="removeUser" class="btn btn-link text-danger w-100">Remove user</button>
                 </form>
             </div>
         </div>
