@@ -35,7 +35,7 @@ export default {
         return {
             loading: true,
             username: '',
-            token: this.$store.state.isAuth ? this.$store.state.user.token : '',
+            token: this.$store.state.user !== null ? this.$store.state.user.token : '',
             about: '',
             createdAt: '',
             postsCount: 0

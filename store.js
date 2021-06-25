@@ -1,32 +1,38 @@
-const user = JSON.parse(localStorage.getItem('user'));
-const state = user
-    ? { isAuth: true, user: user }
-    : { isAuth: false, user: null };
+const USER_KEY = 'user';
 
-if (user) {
+function getUser() {
+    const user = localStorage.getItem(USER_KEY);
+
+    if (user) {
+        return JSON.parse(user);
+    }
+
+    return null;
+}
+
+const user = getUser();
+
+if (user && user.token) {
     Vue.http.headers.common['Authorization'] = 'Bearer ' + user.token;
 }
 
 export default new Vuex.Store({
-    state: state,
+    state: { user },
     mutations: {
         auth_success(state, user) {
             delete user.password;
-            state.isAuth = true;
             state.user = user;
-            localStorage.setItem('user', JSON.stringify(user));
+            localStorage.setItem(USER_KEY, JSON.stringify(user));
             Vue.http.headers.common['Authorization'] = 'Bearer ' + user.token;
         },
         auth_error(state) {
-            state.isAuth = false;
             state.user = null;
-            localStorage.removeItem('user');
+            localStorage.removeItem(USER_KEY);
             delete Vue.http.headers.common['Authorization'];
         },
         auth_logout(state) {
-            state.isAuth = false;
             state.user = null;
-            localStorage.removeItem('user');
+            localStorage.clear();
             delete Vue.http.headers.common['Authorization'];
         },
     },

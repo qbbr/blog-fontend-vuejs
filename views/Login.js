@@ -8,15 +8,15 @@ export default {
                     <div v-if="error" class="alert alert-danger">
                         {{ error }}
                     </div>
-                    <div class="form-group">
-                        <label for="username" class="sr-only">Username</label>
+                    <div class="mb-3">
+                        <label for="username" class="visually-hidden">Username</label>
                         <input type="text" id="username" class="form-control" v-model="username" placeholder="username" required>
                     </div>
-                    <div class="form-group">
-                        <label for="password" class="sr-only">Password</label>
+                    <div class="mb-3">
+                        <label for="password" class="visually-hidden">Password</label>
                         <input type="password" id="password" class="form-control" v-model="password" placeholder="password" required>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    <button type="submit" class="btn btn-primary w-100">Login</button>
                 </form>
             </div>
         </div>
